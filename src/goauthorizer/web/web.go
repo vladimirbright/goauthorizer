@@ -9,23 +9,44 @@ import (
 )
 
 
-var templates = template.Must(template.ParseGlob("src/goauthorizer/templates/*"))
+type Context struct {
+	Title string
+	Header string
+}
+
+var (
+	templates map[string]*template.Template
+)
 
 
-func Render(response http.ResponseWriter, template_name string, context interface{}) {
-	log.Printf("Шаблон для рендера: %s ", template_name)
-	err := templates.ExecuteTemplate(response, template_name, context)
+func init() {
+
+	templates = make(map[string]*template.Template)
+
+	templates["index"] = template.Must(
+		template.ParseFiles("src/goauthorizer/templates/_base.html",
+							"src/goauthorizer/templates/index.html"))
+
+	log.Printf("Loaded templates: %@", templates)
+}
+
+
+func Render(response http.ResponseWriter, template_name string, context Context) {
+	log.Printf("Template to render: %s ", template_name)
+	log.Printf("Context to render: %s ", context)
+	err := templates[template_name].Execute(response, context)
 	if err != nil {
-		log.Printf("Ошибка рендера %s", template_name)
+		log.Printf("Error on render %s", template_name)
 		http.Error(response, err.Error(), http.StatusInternalServerError)
 	}
 }
 
 
 func MainPage(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Шаблоны: %@", templates)
-	var p struct {}
-	Render(w, "index.html", &p)
+	log.Println("MainPage")
+	var p Context
+	p = Context{"Прювет!", "МюдвеД"}
+	Render(w, "index", p)
 }
 
 
