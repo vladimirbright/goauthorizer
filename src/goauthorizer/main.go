@@ -2,9 +2,9 @@ package main
 
 import (
 	"goauthorizer/db"
-	"goauthorizer/web"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -13,9 +13,12 @@ func main() {
 		log.Fatal(err)
 	}
 	defer dbi.Close()
-	log.Printf("Привет! %s \n", dbi)
 
-	http.HandleFunc("/", web.MainPage)
-    http.ListenAndServe(":8080", nil)
-
+	SetupRoutes()
+	listen := os.Getenv("SERVER_LISTEN")
+	if listen == "" {
+		log.Fatal("Setup enviroment variable SERVER_LISTEN in format IP:PORT")
+	}
+	log.Printf("Launched on %s !", listen)
+    http.ListenAndServe(listen, nil)
 }

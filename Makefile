@@ -6,6 +6,7 @@ export PGPORT ?= 5432
 export PGUSER ?= goauthorizer
 export PGDATABASE ?= goauthorizerdb
 export PGPASSWORD ?= 
+export SERVER_LISTEN ?= :8080
 
 # System vars
 BIN = goauthorizer
