@@ -2,14 +2,21 @@
 <html lang="en">
     <head>
         <title>{{ template "title" . }}</title>
-		<link rel="stylesheet" href="/assets/css/main.css">
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="/assets/css/main-16px.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
     </head>
     <body>
+        <header>
+			<h1>Медведь!</h1>
+			<h3>{{.Header}}</h3>
+        </header>
         <section id="contents">
             {{ template "content" . }}
         </section>
         <footer id="footer">
-            My Cool Guestbook 2000 © me forever
+            <a href="https://github.com/vladimirbright/goauthorizer">goauthorizer 2014 ©</a>
         </footer>
     </body>
 </html>

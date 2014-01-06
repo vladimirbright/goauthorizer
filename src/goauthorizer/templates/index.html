@@ -3,5 +3,13 @@
 {{end}}
 
 {{define "content"}}
-	<h1>{{.Header}}</h1>
+	{{template "login" .}}
+	<h4>OR</h4>
+	{{template "register" .}}
+	<h4>OR</h4>
+	{{template "social" .}}
+	<section id="about">
+		User info. <br />
+		Developer info.
+	</section>
 {{end}}

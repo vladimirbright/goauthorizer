@@ -25,6 +25,9 @@ func init() {
 
 	templates["index"] = template.Must(
 		template.ParseFiles("src/goauthorizer/templates/_base.html",
+							"src/goauthorizer/templates/login.html",
+							"src/goauthorizer/templates/register.html",
+							"src/goauthorizer/templates/social.html",
 							"src/goauthorizer/templates/index.html"))
 
 	log.Printf("Loaded templates: %@", templates)
@@ -45,7 +48,7 @@ func Render(response http.ResponseWriter, template_name string, context Context)
 func MainPage(w http.ResponseWriter, r *http.Request) {
 	log.Println("MainPage")
 	var p Context
-	p = Context{"Прювет!", "МюдвеД"}
+	p = Context{"Hello! Bears!", "МюдвеД"}
 	Render(w, "index", p)
 }
 
