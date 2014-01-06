@@ -20,5 +20,5 @@ func main() {
 		log.Fatal("Setup enviroment variable SERVER_LISTEN in format IP:PORT")
 	}
 	log.Printf("Launched on %s !", listen)
-    http.ListenAndServe(listen, nil)
+	http.ListenAndServe(listen, nil)
 }

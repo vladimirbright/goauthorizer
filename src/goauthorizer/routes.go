@@ -1,10 +1,10 @@
 package main
 
 import (
+	"github.com/gorilla/mux"
 	"goauthorizer/web"
 	"log"
 	"net/http"
-	"github.com/gorilla/mux"
 )
 
 func SetupRoutes() *mux.Router {
@@ -20,8 +20,8 @@ func SetupRoutes() *mux.Router {
 
 	// Overrite this location with normal webserver!
 	http.Handle("/assets/",
-				http.StripPrefix("/assets/",
-								 http.FileServer(http.Dir("src/goauthorizer/assets"))))
+		http.StripPrefix("/assets/",
+			http.FileServer(http.Dir("src/goauthorizer/assets"))))
 
 	return r
 }
