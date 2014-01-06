@@ -1,11 +1,11 @@
 #Enviroment variables to config aplication.
 #PG*, OAUTH* & etc.
 # This may be redefined in user enviroment
-export PGHOST := 127.0.0.1
-export PGPORT := 5432
-export PGUSER := goauthorizer
-export PGDATABASE := goauthorizerdb
-export PGPASSWORD := 
+export PGHOST ?= 127.0.0.1
+export PGPORT ?= 5432
+export PGUSER ?= goauthorizer
+export PGDATABASE ?= goauthorizerdb
+export PGPASSWORD ?= 
 
 # System vars
 BIN = goauthorizer
@@ -53,3 +53,4 @@ clean:
 
 deps :
 	go get github.com/gorilla/mux
+	go get github.com/lib/pq
